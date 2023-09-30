@@ -1,0 +1,180 @@
+<%- include('Header') %>
+
+        <div class="wrapper">
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>General Form</h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active">General Form</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-6">
+                                <!-- general form elements -->
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Quick Example</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <!-- form start -->
+                                    <form action="/Product/insertproduct" enctype="multipart/form-data" method="post">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Add Category</label>
+                                                <select class="form-control" name="categoryId" id="categoryId" onchange="getsubcategory()">
+                                                    <option value="">--select Category--</option>
+                                                    <% for(var cd of catdata){%>
+                                                        <option value="<%=cd.id%>"><%=cd.category_name%></option>
+                                                    <% }%>
+
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputUserName">Select Subcategory</label>
+                                                <select class="form-control" name="subcategoryId" id="subcategoryId" onchange="getExtraCategory()">
+                                                        <option value="">--select subcategory--</option>
+                                                </select>
+                                            </div>
+                
+                                            <div class="form-group">
+                                                <label for="inputUserName">Select extracategory</label>
+                                                <select class="form-control" name="extraCategoryId" id="Extracategory_name" onchange="getBrandType()" >
+                                                        <option value ="">--select extracategory--</option>
+                                                </select>
+                                            </div>
+
+                                            <div id="brandType" name="brandType">
+                                                <select name="brandId" id="brandId">
+                                                    <option value="">--select brand--</option>
+                                                </select>
+                                                
+                                                <select name="typeId" id="typeId">
+                                                    <option value="">--select type--</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputUserName">product</label>
+                                                <input id="inputUserName" type="text" name='productName' data-parsley-trigger="change" required="" placeholder="Enter your productName" autocomplete="off" class="form-control">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputUserName">price</label>
+                                                <input id="inputUserName" type="text" name='price' data-parsley-trigger="change" required="" placeholder="price" autocomplete="off" class="form-control">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputUserName">oldPrice</label>
+                                                <input id="inputUserName" type="text" name='oldPrice' data-parsley-trigger="change" required="" placeholder="Enter your oldPrice" autocomplete="off" class="form-control">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">rating</label><br>
+                                                <input type="radio" name="rating" value="1" id="">1
+                                                <input type="radio" name="rating" value="2" id="">2
+                                                <input type="radio" name="rating" value="3" id="">3
+                                                <input type="radio" name="rating" value="4" id="">4
+                                                <input type="radio" name="rating" value="5" id="">5
+                                            </div>
+
+                                           
+                                            <div class="form-checkb">
+                                                <input type="checkbox" class="form-check-input" name="color[]" value="red" id="exampleCheck1">
+                                                <label class="form-check-label" for="exampleCheck1">red</label>
+                                            </div>
+                                            <div class="form-checkb">
+                                                <input type="checkbox" class="form-check-input" name="color[]" value="white" id="exampleCheck1">
+                                                <label class="form-check-label" for="exampleCheck1">white</label>
+                                            </div>
+                                            <div class="form-checkb">
+                                                <input type="checkbox" class="form-check-input" name="color[]" value="black" id="exampleCheck1">
+                                                <label class="form-check-label" for="exampleCheck1">black</label>
+                                            </div>
+                                            
+
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">description</label>
+                                                <input type="text" class="form-control" name='description'
+                                                    id="exampleInputName1" placeholder="description">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>image</label>
+                                                <input type="file" name="avatar"  class="file-upload-default">
+                                                <div class="input-group col-xs-12">
+                                                    <input type="text" class="form-control file-upload-info" disabled
+                                                        placeholder="Upload Image">
+                                                    <span class="input-group-append">
+                                                        <button class="file-upload-browse btn btn-primary"
+                                                            type="button">image</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+    
+                                            <div class="form-group">
+                                                <label>multipleImage</label>
+                                                <input type="file" name="multipleImage" multiple class="file-upload-default">
+                                                <div class="input-group col-xs-12">
+                                                    <input type="text" class="form-control file-upload-info" disabled
+                                                        placeholder="Upload Image">
+                                                    <span class="input-group-append">
+                                                        <button class="file-upload-browse btn btn-primary"
+                                                            type="button">multipleImage</button>
+                                                    </span>
+                                                </div>
+                                            </div>    
+
+                                            <!-- <div class="form-group">
+                                                <label for="exampleInputFile">File input</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" name="category_img" class="custom-file-input"
+                                                            id="exampleInputFile">
+                                                        <label class="custom-file-label" for="exampleInputFile">Choose
+                                                            file</label>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                            </div>
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                        <div class="card-footer">
+                                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.card -->
+                                <%- include('Footer') %>
+
+                                    <!-- Control Sidebar -->
+                                    <aside class="control-sidebar control-sidebar-dark">
+                                        <!-- Control sidebar content goes here -->
+                                    </aside>
+                                    <!-- /.control-sidebar -->
+                            </div>
+                            <!-- ./wrapper -->
+
+
+    </body>
+
+    </html>
